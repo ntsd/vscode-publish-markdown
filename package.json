@@ -1,0 +1,75 @@
+{
+	"name": "vscode-publish-markdown",
+	"displayName": "vscode-publish-markdown",
+	"description": "Publish markdown posts to different blog sites include Medium, dev.to.",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.46.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:publish-markdown.helloWorld",
+		"onCommand:publish-markdown.publishDevTo"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "publish-markdown.helloWorld",
+				"title": "Hello World"
+			},
+			{
+				"command": "publish-markdown.publishDevTo",
+				"title": "Publish to Dev.to",
+				"description": "Publish markdown post to dev.to."
+			}
+		],
+		"configuration": {
+			"title": "Insert Publish Markdown Configuration",
+			"properties": {
+				"publishMarkdown.devToApiKey": {
+					"type": "string",
+					"default": "yWEmSTxzMBpMoYH17VoCtoCU",
+					"description": "API Key for dev.to."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^9.1.1",
+		"@commitlint/config-conventional": "^9.1.1",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.46.0",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"husky": "^4.2.5",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"@types/request-promise": "^4.1.46",
+		"gray-matter": "^4.0.2",
+		"request": "^2.88.2",
+		"request-promise": "^4.2.6"
+	}
+}
